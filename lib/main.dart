@@ -36,10 +36,11 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
         centerTitle: true, // Add this line to center the title
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-        ),
+      body: AnimatedContainer(
+        duration: const Duration(milliseconds: 250),
+        color: const Color(0xFFA3BE8C),
+        width: double.infinity,
+        height: double.infinity,
       ),
     );
   }
