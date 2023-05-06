@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -31,6 +32,20 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  Color _currentColor = const Color(0xFF666666);
+
+  void _generateRandomColor() {
+    final random = Random();
+    setState(() {
+      _currentColor = Color.fromRGBO(
+        random.nextInt(256),
+        random.nextInt(256),
+        random.nextInt(256),
+        1,
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
@@ -38,13 +53,28 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
-        centerTitle: true, // Add this line to center the title
+        centerTitle: true,
       ),
-      body: AnimatedContainer(
-        duration: const Duration(milliseconds: 250),
-        color: const Color(0xFFA3BE8C),
-        width: double.infinity,
-        height: double.infinity,
+      body: Stack(
+        children: [
+          AnimatedContainer(
+            duration: const Duration(milliseconds: 330),
+            color: _currentColor,
+            width: double.infinity,
+            height: double.infinity,
+          ),
+          Material(
+            color: Colors.transparent,
+            child: InkWell(
+              onTap: _generateRandomColor,
+              splashColor: Colors.white.withOpacity(0.25),
+              child: const SizedBox(
+                width: double.infinity,
+                height: double.infinity,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
