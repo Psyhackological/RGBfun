@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.green,
       ),
       home: const MyHomePage(title: 'RGB fun'),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -31,6 +33,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
