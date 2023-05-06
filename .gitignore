@@ -25,3 +25,10 @@ doc/api/
 
 .flutter-plugins
 .flutter-plugins-dependencies
+
+# Project files
+.idea/
+.metadata
+android/
+rgbfun.iml
+test/
