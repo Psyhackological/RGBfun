@@ -13,9 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'RGB fun',
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-      ),
+      theme: ThemeData.dark(),
       home: const MyHomePage(title: 'RGB fun'),
       debugShowCheckedModeBanner: false,
     );
@@ -32,28 +30,43 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  Color _currentColor = const Color(0xFF666666);
-
-  void _generateRandomColor() {
-    final random = Random();
-    setState(() {
-      _currentColor = Color.fromRGBO(
-        random.nextInt(256),
-        random.nextInt(256),
-        random.nextInt(256),
-        1,
-      );
-    });
-  }
+  late Color _currentColor;
 
   @override
   void initState() {
     super.initState();
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
+    _currentColor = generateRandomColor();
+  }
+
+  Color generateRandomColor() {
+    final random = Random();
+    return Color.fromRGBO(
+      random.nextInt(256),
+      random.nextInt(256),
+      random.nextInt(256),
+      1,
+    );
+  }
+
+  void _generateRandomColor() {
+    setState(() {
+      _currentColor = generateRandomColor();
+    });
+  }
+
+  String _colorToHexString(Color color) {
+    return '#${color.red.toRadixString(16).padLeft(2, '0').toUpperCase()}${color.green.toRadixString(16).padLeft(2, '0').toUpperCase()}${color.blue.toRadixString(16).padLeft(2, '0').toUpperCase()}';
   }
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: _currentColor,
+      statusBarIconBrightness: _currentColor.computeLuminance() > 0.5
+          ? Brightness.dark
+          : Brightness.light,
+    ));
+
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -72,9 +85,17 @@ class _MyHomePageState extends State<MyHomePage> {
             child: InkWell(
               onTap: _generateRandomColor,
               splashColor: Colors.white.withOpacity(0.25),
-              child: const SizedBox(
-                width: double.infinity,
-                height: double.infinity,
+              child: Center(
+                child: Text(
+                  _colorToHexString(_currentColor),
+                  style: TextStyle(
+                    fontSize: 48,
+                    fontWeight: FontWeight.bold,
+                    color: _currentColor.computeLuminance() > 0.5
+                        ? Colors.black
+                        : Colors.white,
+                  ),
+                ),
               ),
             ),
           ),
