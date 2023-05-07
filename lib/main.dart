@@ -71,7 +71,15 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(
+          widget.title,
+          style: const TextStyle(
+            fontSize: 24,
+            letterSpacing: 2,
+            fontFamily: 'Courier',
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         centerTitle: true,
       ),
       body: Stack(
@@ -93,7 +101,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   style: TextStyle(
                     fontSize: 48,
                     fontWeight: FontWeight.bold,
-                    fontFamily: 'RobotoMono',
+                    fontFamily: 'Courier',
+                    letterSpacing: 0.5,
                     color: _currentColor.computeLuminance() > 0.5
                         ? Colors.black
                         : Colors.white,
