@@ -40,11 +40,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Color _generateRandomColor() {
     final random = Random();
-    return Color.fromRGBO(
+    return Color.fromARGB(
+      255,
       random.nextInt(256),
       random.nextInt(256),
       random.nextInt(256),
-      1,
     );
   }
 
