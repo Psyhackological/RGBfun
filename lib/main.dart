@@ -35,10 +35,10 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    _currentColor = generateRandomColor();
+    _currentColor = _generateRandomColor();
   }
 
-  Color generateRandomColor() {
+  Color _generateRandomColor() {
     final random = Random();
     return Color.fromRGBO(
       random.nextInt(256),
@@ -48,10 +48,17 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  void _generateRandomColor() {
+  void _updateColor() {
     setState(() {
-      _currentColor = generateRandomColor();
+      _currentColor = _generateRandomColor();
+      _updateSystemUIOverlay();
     });
+  }
+
+  void _updateSystemUIOverlay() {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: _currentColor,
+    ));
   }
 
   String _colorToHexString(Color color) {
@@ -60,12 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: _currentColor,
-      statusBarIconBrightness: _currentColor.computeLuminance() > 0.5
-          ? Brightness.dark
-          : Brightness.light,
-    ));
+    _updateSystemUIOverlay();
 
     return Scaffold(
       appBar: AppBar(
@@ -83,7 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
           Material(
             color: Colors.transparent,
             child: InkWell(
-              onTap: _generateRandomColor,
+              onTap: _updateColor,
               splashColor: Colors.white.withOpacity(0.25),
               child: Center(
                 child: Text(
@@ -91,6 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   style: TextStyle(
                     fontSize: 48,
                     fontWeight: FontWeight.bold,
+                    fontFamily: 'RobotoMono',
                     color: _currentColor.computeLuminance() > 0.5
                         ? Colors.black
                         : Colors.white,
