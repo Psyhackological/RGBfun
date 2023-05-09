@@ -31,6 +31,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   late Color _currentColor;
+  int _selectedIndex = 0;
 
   @override
   void initState() {
@@ -65,24 +66,15 @@ class _MyHomePageState extends State<MyHomePage> {
     return '#${color.red.toRadixString(16).padLeft(2, '0').toUpperCase()}${color.green.toRadixString(16).padLeft(2, '0').toUpperCase()}${color.blue.toRadixString(16).padLeft(2, '0').toUpperCase()}';
   }
 
-  @override
-  Widget build(BuildContext context) {
-    _updateSystemUIOverlay();
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          widget.title,
-          style: const TextStyle(
-            fontSize: 24,
-            letterSpacing: 2,
-            fontFamily: 'Courier',
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        centerTitle: true,
-      ),
-      body: Stack(
+  Widget _buildBody() {
+    if (_selectedIndex == 0) {
+      return Stack(
         children: [
           AnimatedContainer(
             duration: const Duration(milliseconds: 200),
@@ -112,6 +104,43 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
         ],
+      );
+    } else {
+      return Container(); // Empty container for the Favorites page
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    _updateSystemUIOverlay();
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          widget.title,
+          style: const TextStyle(
+            fontSize: 24,
+            letterSpacing: 2,
+            fontFamily: 'Courier',
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        centerTitle: true,
+      ),
+      body: _buildBody(),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite),
+            label: 'Favorites',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
       ),
     );
   }
