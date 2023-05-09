@@ -71,13 +71,16 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _buildBody() {
-    if (_selectedIndex == 0) {
-      return HomePage(
-        color: _currentColor,
-        onTap: _updateColor,
-      );
-    } else {
-      return const FavoritesPage();
+    switch (_selectedIndex) {
+      case 0:
+        return HomePage(
+          color: _currentColor,
+          onTap: _updateColor,
+        );
+      case 1:
+        return const FavoritesPage();
+      default:
+        return Container();
     }
   }
 
