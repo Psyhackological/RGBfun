@@ -85,7 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Stack(
         children: [
           AnimatedContainer(
-            duration: const Duration(milliseconds: 330),
+            duration: const Duration(milliseconds: 200),
             color: _currentColor,
             width: double.infinity,
             height: double.infinity,
