@@ -34,7 +34,7 @@ Development dependencies:
 - [`hive_generator`](https://pub.dev/packages/hive_generator): (version ^2.0.0) Used for code generation for Hive, specifically for generating TypeAdapters that allow Hive to store custom types.
 - [`build_runner`](https://pub.dev/packages/build_runner): (version ^2.4.4) A build system for Dart, used to generate the boilerplate code needed for Hive. It is a development dependency as it is not needed in the final app package.
 
-## 4. Example Widgets & Functions
+## 4. Widgets & Functions
 
 Some of the core widgets and functions used in this app include:
 
@@ -56,7 +56,43 @@ Some of the core widgets and functions used in this app include:
 - `FavoritesModel`: This class extends `ChangeNotifier` and holds the state of the application. It's used to manage the favorites list.
 - `ColorAdapter`: This class extends `TypeAdapter` from the Hive package. It's used to store and retrieve `Color` objects from Hive database.
 
-## 5. Issues / To Do
+## 5. Building The App
+
+Before proceeding, ensure that you have [Dart](https://dart.dev/get-dart) and [Flutter](https://flutter.dev/docs/get-started/install) installed on your system. If you haven't installed them yet, you can follow the linked guides.
+
+Once Dart and Flutter are installed and properly set up, you can follow the steps below to build the RGB Fun app from the source code:
+
+1. Clone the repository to your local machine.
+
+```bash
+git clone https://github.com/Psyhackological/RGBfun.git
+```
+
+2. Navigate into the cloned repository.
+
+```bash
+cd RGBfun
+```
+
+3. Retrieve the app’s package dependencies.
+
+```bash
+flutter pub get
+```
+
+4. After running the above command, Flutter will get all the necessary packages needed for the app.
+
+5. Once all the dependencies are retrieved, you can build the app using the following command:
+
+```bash
+flutter build apk
+```
+
+The above command will generate the `app-release.apk` in the `build/app/outputs/flutter-apk/` directory.
+
+That's it! You have built the RGB Fun Flutter app from source!
+
+## 6. Issues / To Do
 
 These are some known issues that need to be addressed and potential enhancements for the app:
 
@@ -66,7 +102,7 @@ These are some known issues that need to be addressed and potential enhancements
 - [ ] **More adaptive color changing:** The application could benefit from more sophisticated color generation.
 - [ ] **Unit and Integration testing:** Add comprehensive unit and integration tests to ensure application stability and ease of adding new features.
 
-## 6. License
+## 7. License
 
 ![MIT Image](https://upload.wikimedia.org/wikipedia/commons/0/0c/MIT_logo.svg)
 
