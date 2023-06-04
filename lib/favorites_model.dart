@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
-// favorites_model.dart
 class FavoritesModel extends ChangeNotifier {
   late Box<Color> _favoritesBox;
   bool _isReady = false;

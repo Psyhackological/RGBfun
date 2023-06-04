@@ -17,6 +17,8 @@ RGB Fun is a Flutter app that allows users to explore and save randomly generate
 - View a list of favorite colors, stored persistently between app launches.
 - Each color is displayed in hexadecimal representation.
 
+![RGBFunGif](img/rgbfun.gif)
+
 ## 3. Dependencies
 
 The RGB Fun app depends on a few external libraries:
@@ -54,7 +56,17 @@ Some of the core widgets and functions used in this app include:
 - `FavoritesModel`: This class extends `ChangeNotifier` and holds the state of the application. It's used to manage the favorites list.
 - `ColorAdapter`: This class extends `TypeAdapter` from the Hive package. It's used to store and retrieve `Color` objects from Hive database.
 
-## 5. License
+## 5. Issues / To Do
+
+These are some known issues that need to be addressed and potential enhancements for the app:
+
+- [ ] **Removing saved colors:** As of now, there is no way to remove colors once they are added to the favorites list.
+- [ ] **Smoother system UI style transition:** The app changes the system UI overlay style without any animation based on the generated color.
+- [ ] **Copying the hex color:** Currently, the app does not provide a way to copy the hexadecimal value of the color.
+- [ ] **More adaptive color changing:** The application could benefit from more sophisticated color generation.
+- [ ] **Unit and Integration testing:** Add comprehensive unit and integration tests to ensure application stability and ease of adding new features.
+
+## 6. License
 
 ![MIT Image](https://upload.wikimedia.org/wikipedia/commons/0/0c/MIT_logo.svg)
 
