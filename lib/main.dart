@@ -76,12 +76,6 @@ class _MyHomePageState extends State<MyHomePage> {
     ));
   }
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
   Widget _buildBody() {
     switch (_selectedIndex) {
       case 0:
@@ -102,9 +96,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          widget.title,
-          style: const TextStyle(
+        title: const Text(
+          'RGB fun',
+          style: TextStyle(
             fontSize: 24,
             letterSpacing: 2,
             fontFamily: 'Courier',
@@ -126,7 +120,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
         currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
+        onTap: (index) => setState(() => _selectedIndex = index),
       ),
     );
   }
