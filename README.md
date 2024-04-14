@@ -104,6 +104,6 @@ These are some known issues that need to be addressed and potential enhancements
 
 ## 7. License
 
-![MIT Image](https://upload.wikimedia.org/wikipedia/commons/0/0c/MIT_logo.svg)
+![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-with-text-136x68.png)
 
-Software licensed under the MIT Licence.
+This project is licensed under the [GNU GPLv3](https://choosealicense.com/licenses/gpl-3.0/).
